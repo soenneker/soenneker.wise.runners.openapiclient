@@ -26,6 +26,6 @@
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.7" />
         <PackageReference Include="Soenneker.Kiota.Util" Version="4.0.15" />
         <PackageReference Include="Soenneker.Managers.Runners" Version="4.0.2064" />
-        <PackageReference Include="Soenneker.Utils.File.Download" Version="4.0.1582" />
+        <PackageReference Include="Soenneker.Utils.File.Download" Version="4.0.1585" />
     </ItemGroup>
 </Project>
