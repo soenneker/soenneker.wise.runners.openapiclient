@@ -65,7 +65,7 @@ public sealed class FileOperationsUtil : IFileOperationsUtil
         await _fileUtil.DeleteIfExists(targetFilePath, cancellationToken: cancellationToken);
         await _fileUtil.DeleteIfExists(jsonFilePath, cancellationToken: cancellationToken);
 
-        string openApiDocumentUrl = _configuration["Wise:ClientGenerationUrl"] ?? "https://docs.wise.com/_bundle/api-reference/index.yaml";
+        string openApiDocumentUrl = _configuration["Wise:ClientGenerationUrl"] ?? "https://docs.wise.com/_bundle/api-reference/@latest/index.yaml?download";
 
         string? filePath = await _fileDownloadUtil.Download(openApiDocumentUrl,
             targetFilePath, fileExtension: ".yaml", cancellationToken: cancellationToken);
