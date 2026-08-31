@@ -28,7 +28,7 @@ public sealed class Program
         _environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
         if (string.IsNullOrWhiteSpace(_environment))
-            throw new Exception("ASPNETCORE_ENVIRONMENT is not set");
+            throw new InvalidOperationException("ASPNETCORE_ENVIRONMENT is not set");
 
         // Declare CancellationTokenSource in a broader scope
         _cts = new CancellationTokenSource(); // Use 'using' to ensure proper disposal
@@ -57,7 +57,12 @@ public sealed class Program
     /// </summary>
     public static IHostBuilder CreateHostBuilder(string[] args)
     {
-        DeployEnvironment envEnum = DeployEnvironment.FromName(_environment);
+        string? environment = _environment ?? Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+        if (string.IsNullOrWhiteSpace(environment))
+            throw new InvalidOperationException("ASPNETCORE_ENVIRONMENT is not set");
+
+        DeployEnvironment envEnum = DeployEnvironment.FromName(environment);
 
         LoggerConfigurationExtension.BuildBootstrapLoggerAndSetGloballySync(envEnum);
 
